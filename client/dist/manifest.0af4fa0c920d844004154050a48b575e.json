@@ -1,0 +1,42 @@
+{
+  "icons": [
+    {
+      "src": "auto/icon_512x512.7bf7ab88602e694fc0782ebea902c19b.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "auto/icon_384x384.b3f7feffdd99e66192ef59dfff2e7202.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "auto/icon_256x256.5423dead74ca5f82d857564e4b598415.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "auto/icon_192x192.ed72308a7532316d71c805e5bba75008.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "auto/icon_128x128.7811def012f281a09d1222a765b53ffd.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "auto/icon_96x96.68589775f0156c93a3a620467d0aebc7.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Scratch",
+  "short_name": "Scratch",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "A text editor progressive web application",
+  "background_color": "#000000",
+  "theme_color": "#ffffff"
+}
