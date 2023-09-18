@@ -21,64 +21,13 @@ const assetCache = new CacheFirst({
 
 // Register a route for caching image assets
 registerRoute(
-  ({ request }) => request.destination === 'image',
-  ({ event }) => {
-    return imageCache.handle({ event });
-  }
+  ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
+  new StaleWhileRevalidate({
+      cacheName: 'asset-cache',
+      plugins: [
+          new CacheableResponsePlugin({
+              statuses: [0, 200],
+          }),
+      ],
+  })
 );
-
-
-const urlPattern = /^\.\/assets\/icons\/icon_(\d+)x(\d+)\.png$/;
-
-self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const match = urlPattern.exec(request.url);
-
-  if (match) {
-    // Construct the cached URL with the content-based hash
-    const cachedURL = `./assets/icons/icon_${match[1]}x${match[2]}.b3f7feffdd99e66192ef59dfff2e7202.png`;
-
-    event.respondWith(
-      caches.match(cachedURL).then((response) => {
-        return response || fetch(request);
-      })
-    );
-  }
-});
-
-// Register routes and apply caching strategies
-registerRoute(
-  ({ request }) => request.destination === 'document',
-  ({ event }) => {
-    return assetCache.handle({ event });
-  }
-);
-
-registerRoute(
-  ({ request }) =>
-    request.destination === 'style' ||
-    request.destination === 'script' ||
-    request.destination === 'image',
-  ({ event }) => {
-    return assetCache.handle({ event });
-  }
-);
-
-// Fallback for offline content
-registerRoute(
-  ({ request }) => request.mode === 'navigate',
-  ({ event }) => {
-    return assetCache.handle({ event });
-  }
-);
-
-// Define caching strategies for different types of assets
-const htmlCache = new StaleWhileRevalidate({
-  cacheName: 'html-cache',
-  plugins: [
-    new ExpirationPlugin({
-      maxAgeSeconds: 7 * 24 * 60 * 60, // Cache HTML for 7 days
-    }),
-  ],
-});
-

@@ -1,5 +1,5 @@
 {
-  "name": "Scratch",
+  "name": "scratch",
   "version": "1.0.0",
   "description": "A text editor progressive web application",
   "main": "server.js",
