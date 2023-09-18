@@ -31,3 +31,7 @@ registerRoute(
       ],
   })
 );
+
+registerRoute(
+  ({ request }) => request.mode == 'navigate', assetCache
+)
