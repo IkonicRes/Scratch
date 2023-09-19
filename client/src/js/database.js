@@ -17,9 +17,11 @@ export const putDb = async (content) => {
   try {
     console.log('Getting Database...')
     const contentDb = await openDB('jate', 1)
-    const text = contentDb.transaction('jate', 'readonly')
+    const text = contentDb.transaction('jate', 'readwrite')
     const store = text.objectStore('jate')
-    const request = store.getAll()
+    const request = store.put({
+      id: 1,
+      value: content})
     const result = await request
     console.log('result.value', result)
     return result
@@ -35,7 +37,7 @@ export const getDb = async () => {
     const contentDb = await openDB('jate', 1)
     const text = contentDb.transaction('jate', 'readonly')
     const store = text.objectStore('jate')
-    const request = store.getAll()
+    const request = store.get(1)
     const result = await request
     console.log('result: ', result)
     return result?.value
