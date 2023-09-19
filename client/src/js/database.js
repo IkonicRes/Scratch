@@ -38,7 +38,7 @@ export const getDb = async () => {
     const request = store.getAll()
     const result = await request
     console.log('result: ', result)
-    return result.value
+    return result?.value
   } catch (error) {
     console.error('getDb not executed correctly: ', error)
   }
